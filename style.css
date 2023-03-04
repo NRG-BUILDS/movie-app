@@ -1,0 +1,91 @@
+body {
+    font-size: 16px;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    /*background: linear-gradient(to bottom, rgb(6, 17, 60), rgb(255, 140, 50));*/
+    background-color: black;
+    color: white;
+}
+* { 
+    box-sizing: border-box;
+}
+.greeting_container { 
+    padding: 15% 4%;
+    font-size: 1.4rem;
+    color: white;
+    font-weight: 550
+}
+.search_bar_container {
+    width: 90%;
+    margin: auto;
+}
+.search_bar_container input { 
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border-radius: 20px;
+    border: 1px solid white;
+    color: white;
+    background-color: transparent;
+}
+.film_list { 
+    margin: 10% 0;
+}
+.slides { 
+    display: flex;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+    overflow: scroll;
+}
+.slides div { 
+    scroll-snap-align: start; 
+    scroll-snap-stop: always; 
+    margin: 0 10px;
+    border-radius: 6px;
+}
+.xl-slide>div { 
+    flex: 1 0 90%;
+    height: 550px;
+    position: relative;
+    opacity: 1;
+}
+.xl-slide>div:hover .slide_info,
+.sm-slide>div:hover .slide_info{ 
+    opacity: 1;
+}
+.sm-slide>div { 
+    flex: 1 0 45%;
+    height: 250px;
+    position: relative;
+    opacity: 1;
+}
+.movie_pic { 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    z-index: 1; 
+}
+.slide_info { 
+    position: absolute;
+    bottom: 0; left:-9px;
+    padding: 5%;
+    width: 100%;
+    height: 35%;
+    overflow: hidden;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    color: white;
+    z-index: 3;
+    opacity: 0;
+    transition: .5s;
+}
+.slide_info .title { 
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    display: block;
+    font-weight: bolder;
+}
+.slide_info .genre, .trend_number, .brief_synopsis { 
+    opacity: 0.8;
+    display: block;
+}
