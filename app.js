@@ -50,18 +50,17 @@ showTrending = (data) => {
     const list = data.results
     let picArray = [];
     let i = 0
-    for(let i = 0; i < 5; i++) { 
+    for(let i = 0; i < data.results.length; i++) { 
         if ( data.results[i].primaryImage === null) { 
             console.log(data)
         } else { 
             console.log(data.results[i].primaryImage.url)
-            picArray.push(data.results[i].primaryImage.url)
+            picArray.push(data.results[i].primaryImage.url);
         }
         
     }
     list.map((item) => {
         name = item.titleText.text;
-        let picArray = [];
         
         text = `<div>
               <img src="${picArray[i]}" class="movie_pic">
