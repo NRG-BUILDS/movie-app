@@ -34,9 +34,10 @@
           <span>What Would You Like To Watch Today?</span>
       </div>
       <div class="search_bar_container">
-          <input type="text" placeholder="Search" id="search_bar">
+          <input type="text" placeholder="Find Movies, TV Shows, Series..." id="search_bar">
+          <button onclick="searchMovies()">Search</button>
       </div>
-      
+      <div class="main_sections">
       <div class="new_movies film_list">
           <h2>New Movies</h2>
           <div class="slides sm-slide">
@@ -60,6 +61,12 @@
               <div><img src="movie.jpg" class="movie_pic"></div>
               <div><img src="movie.jpg" class="movie_pic"></div>
           </div>
+      </div>
+      </div> <!--end of main sections-->
+      <div class="film_list search_results_container">
+          <h2>Results For </h2>
+          <div class="slides sm-slide search_results">
+              
       </div>
   </section>
   <!-- Project -->

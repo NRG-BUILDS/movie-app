@@ -12,6 +12,13 @@ const options2 = {
 		'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
 	}
 };
+const searchOption = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '9291656858mshef3c555eb2e1bf1p18be2bjsnde3c88b7d459',
+		'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+	}
+};
 fetch('https://online-movie-database.p.rapidapi.com/title/get-most-popular-movies?currentCountry=US&purchaseCountry=US&homeCountry=US', options)
 	.then(response => response.json())
 	.then(response => getKeys(response))
@@ -41,11 +48,23 @@ getTrendingData = () => {
 showTrending = (data) => { 
     trend = 1;
     const list = data.results
+    let picArray = [];
+    let i = 0
+    for(let i = 0; i < 5; i++) { 
+        if ( data.results[i].primaryImage === null) { 
+            console.log(data)
+        } else { 
+            console.log(data.results[i].primaryImage.url)
+            picArray.push(data.results[i].primaryImage.url)
+        }
+        
+    }
     list.map((item) => {
-        pic = item.primaryImage.url;
         name = item.titleText.text;
+        let picArray = [];
+        
         text = `<div>
-              <img src="${pic}" class="movie_pic">
+              <img src="${picArray[i]}" class="movie_pic">
               <div class="slide_info">
                   <span class="title">${name}</span>
                   <span class="genre">Action</span>
@@ -54,7 +73,8 @@ showTrending = (data) => {
               </div></div>`
         display = document.querySelector('.trending');
         display.innerHTML += text;
-        trend++
+        trend++;
+        i++;
         })
 };
 
@@ -77,18 +97,65 @@ getUpcomingData = () => {
 }
 showUpcoming = (data) => { 
     const list = data.results
+    
+    let picArray = [];
+        let i = 0
+        for (let i = 0; i < 5; i++) {
+            if ( data.results[i].primaryImage === null) { 
+            console.log(data)
+        } else { 
+            console.log(data.results[i].primaryImage.url)
+            picArray.push(data.results[i].primaryImage.url)
+        }
+        
+        }    
     list.map((item) => {
-        console.log(item)
-        pic = item.primaryImage.url;
+        //console.log(item)
         name = item.titleText.text;
         date = item.releaseDate.day + '-' +item.releaseDate.month + '-' +item.releaseDate.year
         text = `<div>
-                  <img src="${pic}" class="movie_pic">
+                  <img src="${picArray[i]}" class="movie_pic">
                   <div class="slide_info">
-                      <span class="genre">Release Date:<br>${date}</span>
+                      <span class="genre">${name}:<br>${date}</span>
                   </div>
               </div>>`
         display = document.querySelector('.upcoming');
         display.innerHTML += text
         })
 };
+searchMovies = () => { 
+    let query = document.querySelector('#search_bar').value;
+    fetch(`https://imdb8.p.rapidapi.com/title/find?q=${query}`, searchOption)
+        .then(response => response.json())
+        .then(data => showResults(data))
+        .catch(err => console.error(err));
+}
+showResults = (data) => { 
+    const list = data.results
+    let displayContainer = document.querySelector('.search_results_container');
+    let display = document.querySelector('.search_results')
+    let otherDisplay = document.querySelector('.main_sections');
+    let picArray = [];
+    let i = 0
+    for(let i = 0; i < 5; i++) { 
+        console.log(data.results[i].image.url)
+        picArray.push(data.results[i].image.url)
+    }
+    console.log(picArray)
+    list.map((items) => { 
+        name = items.title;
+        pic = items.image.url;
+        years = items.year;
+        text = `<div>
+                  <img src="${picArray[i]}" class="movie_pic">
+                  <div class="slide_info">
+                      <span class="title-sm">${name}</span>
+                      <span class="genre">${years}</span>
+                  </div>
+              </div>`
+        displayContainer.style.display = "block";
+        otherDisplay.style.display = "none";
+        display.innerHTML += text;
+        i++;
+    })
+}

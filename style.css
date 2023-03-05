@@ -17,16 +17,31 @@ body {
 }
 .search_bar_container {
     width: 90%;
+    display: flex;
     margin: auto;
 }
 .search_bar_container input { 
-    width: 100%;
+    width: 70%;
     padding: 10px;
     outline: none;
-    border-radius: 20px;
+    border-radius: 20px 0 0 20px;
     border: 1px solid white;
+    border-right-width: 0;
     color: white;
     background-color: transparent;
+}
+.search_bar_container button { 
+    width: 30%;
+    padding: 10px;
+    border-radius: 0 20px 20px 0;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    transition: 0.3s;
+}
+.search_bar_container button:hover { 
+    background-color: red;
+    border: 1px solid red;
 }
 .film_list { 
     margin: 10% 0;
@@ -79,13 +94,19 @@ body {
     opacity: 0;
     transition: .5s;
 }
-.slide_info .title { 
+.slide_info .title, .slide_info .title-sm { 
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;
     display: block;
     font-weight: bolder;
 }
+.slide_info .title-sm { 
+    font-size: 1rem;
+}
 .slide_info .genre, .trend_number, .brief_synopsis { 
     opacity: 0.8;
     display: block;
+}
+.search_results_container { 
+    display: none;
 }
