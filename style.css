@@ -9,11 +9,22 @@ body {
 * { 
     box-sizing: border-box;
 }
-.navbar { 
-    padding: 5px 15px;
+.details_page { 
+    display: none;
 }
-.logo_container { 
+.navbar { 
+    
+    padding: 7px 15px;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+}
+.navbar::after { 
+    content: "";
+}
+.logo_container{ 
     font-weight: 600;
+    margin: 0;
 }
 .logo_container span{ 
     color: red;
@@ -106,7 +117,7 @@ body {
     opacity: 0;
     transition: .5s;
 }
-.slide_info .title, .slide_info .title-sm { 
+.title, .title-sm { 
     font-family: 'Poppins', sans-serif;
     font-size: 1.8rem;
     display: block;
@@ -118,6 +129,31 @@ body {
 .slide_info .genre, .trend_number, .brief_synopsis { 
     opacity: 0.8;
     display: block;
+}
+.slide_info button { 
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    line-height: 0;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    border: none;
+}
+.trend_div { 
+    height: 50px;
+    width: 50px;
+    font-size: 1.5rem;
+}
+.upcoming_button, .new_movies_button { 
+    height: 25px;
+    width: 25px;
+    padding: 0;
+    
+}
+.upcoming_button material-icons-outlined, .new_movies_button .material-icons-outlined { 
+    font-size: 0.8rem;
 }
 .trend_number { 
     font-size: 10px;
@@ -134,4 +170,53 @@ body {
 }
 .search_results_container { 
     display: none;
+}
+
+
+.backdrop_container { 
+    position: relative;
+    width: 100%;
+    height: 60vh;
+}
+.detail_title { 
+    position: absolute;
+    bottom:0px; left: 0; right: 0;
+    height: 30%;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1))
+}
+.detail_title .title { 
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+}
+.details_container { 
+    margin: 0 10%;
+    text-align: center;
+    opacity: 0.7;
+    border-bottom: 1px solid white;
+}
+.actor_tray { 
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    justify-content: space-between;
+}
+.actor_tray>div { 
+    flex: 1 0 60%;
+    margin: 8px;
+}
+.actor_tray>div>div { 
+    padding: 5px 1px;
+    border-radius: 50px;
+    margin-bottom: 8px;
+    background: #262626;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.actor_pic { 
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }

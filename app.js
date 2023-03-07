@@ -3,30 +3,50 @@ fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=66ffe7fe1fbf9c25e
 .then(response => showTrending(response))
 .catch(err => console.error(err));
 
+
 showTrending = (data) => { 
-    console.log(data);
     const list = data.results;
     let picArray = []
+    let trendObj = {
+            name: [],
+            id: [],
+            bg: [],
+            overview: [],
+            vote: []
+        }
     let text = ""
     const display = document.querySelector('.trending');
     display.innerHTML = ""
+    
     for(let i = 0; i < data.results.length; i++) { 
+         
         let picSrc = "https://image.tmdb.org/t/p/w500" + list[i].poster_path;
+        let bgSrc = "https://image.tmdb.org/t/p/w1280" + list[i].backdrop_path
         let name = list[i].original_title;
+        let movie_id = list[i].id
         let overview = list[i].overview;
+        let vote = list[i].vote_average;
         
+        
+        trendObj.name[i] = list[i].original_title;
+        trendObj.id[i] = movie_id;
+        trendObj.bg[i] = bgSrc;
+        trendObj.overview[i] = overview;
+        trendObj.vote[i] = vote;
         picArray.push(picSrc);
+        
         text += `<div>
               <img src="${picArray[i]}" class="movie_pic">
               <div class="slide_info">
                   <span class="title">${name}</span>
                   <span class="genre">Action</span>
-                  <span class="trend_number">Trending #${i+1}</span>
+                  <span class="trend_number">Trending #${i+1}</span><button class="trend_div"><span class='material-icons-outlined'>arrow_forward</span></button>
                   <span class="brief_synopsis">${overview}</span>
               </div>
           </div>`
+        display.innerHTML = text;  
     }
-    display.innerHTML += text;
+    createTrendButton(trendObj);
 }
 
 
@@ -36,9 +56,16 @@ fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=66ffe7fe1fbf9c25e7
 .catch(err => console.error(err));
 
 showNewMovies = (data) => { 
-    console.log(data);
+    //console.log(data);
     const list = data.results;
     let picArray = []
+    let nmovObj = {
+        name: [],
+        id: [],
+        bg: [],
+        overview: [],
+        vote: []
+    }
     let text = ""
     const display = document.querySelector('.new_movies');
     display.innerHTML = ""
@@ -46,16 +73,27 @@ showNewMovies = (data) => {
         let picSrc = "https://image.tmdb.org/t/p/w500" + list[i].poster_path;
         let name = list[i].original_title;
         let vote = list[i].vote_average;
+        let bgSrc = "https://image.tmdb.org/t/p/w1280" + list[i].backdrop_path
+        let movie_id = list[i].id
+        let overview = list[i].overview;
+        
+        
+        nmovObj.name[i] = list[i].original_title;
+        nmovObj.id[i] = movie_id;
+        nmovObj.bg[i] = bgSrc;
+        nmovObj.overview[i] = overview;
+        nmovObj.vote[i] = vote;
         
         picArray.push(picSrc);
         text += `<div>
                   <img src="${picArray[i]}" class="movie_pic">
                   <div class="slide_info">
-                      <span class="genre">${name}<br>${vote}</span>
+                      <span class="genre">${name}<br>${vote}</span><button class='new_movies_button'><span class='material-icons-outlined'>arrow_forward</span></button>
                   </div>
               </div>`
     }
     display.innerHTML += text;
+    createNewMoviesButton(nmovObj);
 }
 
 
@@ -67,9 +105,16 @@ fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=66ffe7fe1fbf9c25e7766
 .catch(err => console.error(err));
 
 showUpcoming = (data) => { 
-    console.log(data);
+    //console.log(data);
     const list = data.results;
     let picArray = []
+    let upcomingObj = {
+        name: [],
+        id: [],
+        bg: [],
+        overview: [],
+        vote: []
+    }
     let text = ""
     const display = document.querySelector('.upcoming');
     display.innerHTML = ""
@@ -77,16 +122,28 @@ showUpcoming = (data) => {
         let picSrc = "https://image.tmdb.org/t/p/w500" + list[i].poster_path;
         let name = list[i].original_title;
         let releaseDate = list[i].release_date;
+        let bgSrc = "https://image.tmdb.org/t/p/w1280" + list[i].backdrop_path
+        let movie_id = list[i].id
+        let overview = list[i].overview;
+        let vote = list[i].vote_average;
+        
+        
+        upcomingObj.name[i] = list[i].original_title;
+        upcomingObj.id[i] = movie_id;
+        upcomingObj.bg[i] = bgSrc;
+        upcomingObj.overview[i] = overview;
+        upcomingObj.vote[i] = vote;
         
         picArray.push(picSrc);
         text += `<div>
                   <img src="${picArray[i]}" class="movie_pic">
                   <div class="slide_info">
-                      <span class="genre">${name}<br>${releaseDate}</span>
+                      <span class="genre">${name}<br>${releaseDate}</span><button class='upcoming_button'><span class='material-icons-outlined'>arrow_forward</span></button>
                   </div>
               </div>`
     }
     display.innerHTML += text;
+    createUpcomingButton(upcomingObj);
 }
 
 
@@ -113,7 +170,7 @@ showResults = (data) => {
     let picArray = [];
     let i = 0
     for(let i = 0; i < 5; i++) { 
-        console.log(data.results[i].image.url)
+        //console.log(data.results[i].image.url)
         picArray.push(data.results[i].image.url)
     }
     console.log(picArray)
@@ -134,3 +191,118 @@ showResults = (data) => {
         i++;
     })
 }
+showDetails = (trendObj, id_key) => { 
+    console.log(trendObj)
+    console.log(trendObj.id[0])
+    const homeScreen = document.querySelector('.home')
+    const detailsScreen = document.querySelector('.details_page')
+    const bgDisplay = document.querySelector('.backdrop_pic')
+    const ttDisplay = document.querySelector('.detail_title')
+    const detDisplay = document.querySelector('.details_container')
+    for (let i = 0; i < trendObj.id.length; i++) { 
+        if (trendObj.id[i] == id_key) { 
+        fetch(`https://api.themoviedb.org/3/movie/${trendObj.id[i]}/credits?api_key=66ffe7fe1fbf9c25e7766e730cd29fcd`)
+        .then(response => response.json())
+        .then(data => showCast(data))
+        .catch(err => console.error(err));
+        fetch(`https://api.themoviedb.org/3/movie/${trendObj.id[i]}?api_key=66ffe7fe1fbf9c25e7766e730cd29fcd`)
+        .then(response => response.json())
+        .then(data => { 
+            detDisplay.innerHTML = `<div class="details_container">
+              <p>•${data.genres[0].name}-${data.genres[1].name}•${getTime(data.runtime)}</p>
+              <p>${gradeVote(trendObj.vote[i])}</p>
+              <p>${trendObj.overview[i]}</p>
+          </div>`
+        })
+        .catch(err => console.error(err));
+        
+        
+        bgDisplay.src = trendObj.bg[i];
+        ttDisplay.innerHTML = `<span class="title">${trendObj.name[i]}</span>`
+        
+        homeScreen.style.display = "none";
+        detailsScreen.style.display ="block"
+        }
+    
+    } 
+    
+}
+showCast = (data) => { 
+    const list = data.cast;
+    const display = document.querySelector('.actor_tray')
+    
+    let text = `<div>
+                  <div>
+                      <img src="${"https://image.tmdb.org/t/p/w500"+list[0].profile_path}" class="actor_pic">
+                      <span>${list[0].name}</span>
+                  </div>
+                  <div>
+                      <img src="${"https://image.tmdb.org/t/p/w185"+list[1].profile_path}" class="actor_pic">
+                      <span>${list[1].name}</span>
+                  </div>
+              </div>
+              <div>
+                  <div>
+                      <img src="${"https://image.tmdb.org/t/p/w185"+list[2].profile_path}" class="actor_pic">
+                      <span>${list[2].name}</span>
+                  </div>
+                  <div>
+                      <img src="${"https://image.tmdb.org/t/p/w185"+list[3].profile_path}" class="actor_pic">
+                      <span>${list[3].name}</span>
+                  </div>
+              </div>
+              <div>
+                  <div>
+                      <img src="${"https://image.tmdb.org/t/p/w185"+list[4].profile_path}" class="actor_pic">
+                      <span>${list[4].name}</span>
+                  </div>
+                  <div>
+                      <img src="${"https://image.tmdb.org/t/p/w185"+list[5].profile_path}" class="actor_pic">
+                      <span>${list[5].name}</span>
+                  </div>
+              </div>`
+    display.innerHTML = text
+}
+gradeVote = (num) =>  { 
+    let stars = Math.floor(num / 2)
+    let halfStar = num % 2;
+    let text = ""
+    for (let i = 0; i < stars; i++) { 
+        text +=`<span class="material-icons-outlined">star</span>`
+    }
+    if (halfStar >= 0.5) { 
+        text += `<span class="material-icons-outlined">star_half</span>`
+    }
+    text += `(${num})`
+    return text
+}
+getTime = (time) => { 
+    let hr = Math.floor(time / 60);
+    let min = time % 60
+    let text = `${hr}h${min}m`
+    
+    return text
+}
+
+createTrendButton = (trendObj) => { 
+    console.log(trendObj)
+    let btn = document.querySelectorAll('.trend_div');
+    for (let i = 0; i < 20; i++) { 
+        btn[i].addEventListener("click", function() { showDetails(trendObj, trendObj.id[i]) })
+    }
+}
+createNewMoviesButton = (trendObj) => { 
+    console.log(trendObj)
+    let btn = document.querySelectorAll('.new_movies_button');
+    for (let i = 0; i < 20; i++) { 
+        btn[i].addEventListener("click", function() { showDetails(trendObj, trendObj.id[i]) })
+    }
+}
+createUpcomingButton = (trendObj) => { 
+    console.log(trendObj)
+    let btn = document.querySelectorAll('.upcoming_button');
+    for (let i = 0; i < 20; i++) { 
+        btn[i].addEventListener("click", function() { showDetails(trendObj, trendObj.id[i]) })
+    }
+}
+
