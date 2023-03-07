@@ -40,7 +40,7 @@ showTrending = (data) => {
               <div class="slide_info">
                   <span class="title">${name}</span>
                   <span class="genre">Action</span>
-                  <span class="trend_number">Trending #${i+1}</span><button class="trend_div"><span class='material-icons-outlined'>arrow_forward</span></button>
+                  <span class="trend_number">Trending #${i+1}</span><button class="trend_div"><a class='link_btn'><span class='material-icons-outlined'>arrow_forward</span></a></button>
                   <span class="brief_synopsis">${overview}</span>
               </div>
           </div>`
@@ -88,7 +88,7 @@ showNewMovies = (data) => {
         text += `<div>
                   <img src="${picArray[i]}" class="movie_pic">
                   <div class="slide_info">
-                      <span class="genre">${name}<br>${vote}</span><button class='new_movies_button'><span class='material-icons-outlined'>arrow_forward</span></button>
+                      <span class="genre">${name}<br>${vote}</span><button class="trend_div"><a class='link_btn'><span class='material-icons-outlined'>arrow_forward</span></a></button>
                   </div>
               </div>`
     }
@@ -138,7 +138,7 @@ showUpcoming = (data) => {
         text += `<div>
                   <img src="${picArray[i]}" class="movie_pic">
                   <div class="slide_info">
-                      <span class="genre">${name}<br>${releaseDate}</span><button class='upcoming_button'><span class='material-icons-outlined'>arrow_forward</span></button>
+                      <span class="genre">${name}<br>${releaseDate}</span><button class="trend_div"><a class='link_btn'><span class='material-icons-outlined'>arrow_forward</span></a></button>
                   </div>
               </div>`
     }
@@ -286,23 +286,38 @@ getTime = (time) => {
 
 createTrendButton = (trendObj) => { 
     console.log(trendObj)
-    let btn = document.querySelectorAll('.trend_div');
+    let btn = document.querySelectorAll('.link_btn');
     for (let i = 0; i < 20; i++) { 
-        btn[i].addEventListener("click", function() { showDetails(trendObj, trendObj.id[i]) })
+        btn[i].href = "movie.html"
+        btn[i].addEventListener("click", 
+        function() { 
+            sessionStorage.setItem("trendObj", JSON.stringify(trendObj));
+        sessionStorage.setItem("id_key", trendObj.id[i]) }
+        )
     }
 }
 createNewMoviesButton = (trendObj) => { 
-    console.log(trendObj)
-    let btn = document.querySelectorAll('.new_movies_button');
+     console.log(trendObj)
+    let btn = document.querySelectorAll('.link_btn');
     for (let i = 0; i < 20; i++) { 
-        btn[i].addEventListener("click", function() { showDetails(trendObj, trendObj.id[i]) })
+        btn[i].href = "movie.html"
+        btn[i].addEventListener("click", 
+        function() { 
+            sessionStorage.setItem("trendObj", JSON.stringify(trendObj));
+        sessionStorage.setItem("id_key", trendObj.id[i]) }
+        )
     }
 }
 createUpcomingButton = (trendObj) => { 
-    console.log(trendObj)
-    let btn = document.querySelectorAll('.upcoming_button');
+     console.log(trendObj)
+    let btn = document.querySelectorAll('.link_btn');
     for (let i = 0; i < 20; i++) { 
-        btn[i].addEventListener("click", function() { showDetails(trendObj, trendObj.id[i]) })
+        btn[i].href = "movie.html"
+        btn[i].addEventListener("click", 
+        function() { 
+            sessionStorage.setItem("trendObj", JSON.stringify(trendObj));
+        sessionStorage.setItem("id_key", trendObj.id[i]) }
+        )
     }
 }
 
