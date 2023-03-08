@@ -40,7 +40,7 @@ showTrending = (data) => {
               <div class="slide_info">
                   <span class="title">${name}</span>
                   <span class="genre">Action</span>
-                  <span class="trend_number">Trending #${i+1}</span><button class="trend_div"><a class='link_btn'><span class='material-icons-outlined'>arrow_forward</span></a></button>
+                  <span class="trend_number">Trending #${i+1}</span><button class="trend_div"><a class='trend_link_btn'><span class='material-icons-outlined'>arrow_forward</span></a></button>
                   <span class="brief_synopsis">${overview}</span>
               </div>
           </div>`
@@ -88,7 +88,7 @@ showNewMovies = (data) => {
         text += `<div>
                   <img src="${picArray[i]}" class="movie_pic">
                   <div class="slide_info">
-                      <span class="genre">${name}<br>${vote}</span><button class="trend_div"><a class='link_btn'><span class='material-icons-outlined'>arrow_forward</span></a></button>
+                      <span class="genre">${name}<br>${vote}</span><button class="trend_div"><a class='nwmov_link_btn'><span class='material-icons-outlined'>arrow_forward</span></a></button>
                   </div>
               </div>`
     }
@@ -138,7 +138,7 @@ showUpcoming = (data) => {
         text += `<div>
                   <img src="${picArray[i]}" class="movie_pic">
                   <div class="slide_info">
-                      <span class="genre">${name}<br>${releaseDate}</span><button class="trend_div"><a class='link_btn'><span class='material-icons-outlined'>arrow_forward</span></a></button>
+                      <span class="genre">${name}<br>${releaseDate}</span><button class="trend_div"><a class='upcoming_link_btn'><span class='material-icons-outlined'>arrow_forward</span></a></button>
                   </div>
               </div>`
     }
@@ -286,7 +286,7 @@ getTime = (time) => {
 
 createTrendButton = (trendObj) => { 
     console.log(trendObj)
-    let btn = document.querySelectorAll('.link_btn');
+    let btn = document.querySelectorAll('.trend_link_btn');
     for (let i = 0; i < 20; i++) { 
         btn[i].href = "movie.html"
         btn[i].addEventListener("click", 
@@ -298,7 +298,7 @@ createTrendButton = (trendObj) => {
 }
 createNewMoviesButton = (trendObj) => { 
      console.log(trendObj)
-    let btn = document.querySelectorAll('.link_btn');
+    let btn = document.querySelectorAll('.nwmov_link_btn');
     for (let i = 0; i < 20; i++) { 
         btn[i].href = "movie.html"
         btn[i].addEventListener("click", 
@@ -310,7 +310,7 @@ createNewMoviesButton = (trendObj) => {
 }
 createUpcomingButton = (trendObj) => { 
      console.log(trendObj)
-    let btn = document.querySelectorAll('.link_btn');
+    let btn = document.querySelectorAll('.upcoming_link_btn');
     for (let i = 0; i < 20; i++) { 
         btn[i].href = "movie.html"
         btn[i].addEventListener("click", 

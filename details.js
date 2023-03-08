@@ -2,8 +2,6 @@ let trendObj = JSON.parse(sessionStorage.getItem("trendObj"))
 let id_key = sessionStorage.getItem("id_key")
 
 showDetails = (trendObj, id_key) => {
-    console.log(trendObj)
-    console.log(id_key)
     const detailsScreen = document.querySelector('.details_page')
     const bgDisplay = document.querySelector('.backdrop_pic')
     const ttDisplay = document.querySelector('.detail_title')
@@ -21,11 +19,17 @@ showDetails = (trendObj, id_key) => {
               <p>•${data.genres[0].name}-${data.genres[1].name}•${getTime(data.runtime)}</p>
               <p>${gradeVote(trendObj.vote[i])}</p>
               <p>${trendObj.overview[i]}</p>
-          </div>`
+              </div>`
                 })
                 .catch(err => console.error(err));
-
-
+            fetch(`https://api.themoviedb.org/3/movie/${trendObj.id[i]}/videos?api_key=66ffe7fe1fbf9c25e7766e730cd29fcd`)    
+            .then(response => response.json())
+            .then(data => { 
+                console. log(data)
+                const display = document.querySelector('.youtube_container')
+                const video = data.results[1].key;
+                display.src = `https://www.youtube.com/embed/${video}`
+            })
             bgDisplay.src = trendObj.bg[i];
             ttDisplay.innerHTML = `<span class="title">${trendObj.name[i]}</span>`
         }
