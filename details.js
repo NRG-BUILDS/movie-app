@@ -126,24 +126,24 @@ showMovieCast = (data) => {
                   </div>
               </div>
               <div>
-                                    <img src="${"https://image.tmdb.org/t/p/w500"+list[4].profile_path}" class="actor_pic">
-                                    <span>${list[4].name}</span>
-                                </div> <
-              div >
-                  <img src="${"https://image.tmdb.org/t/p/w185"+list[5].profile_path}" class="actor_pic">
-                                    <span>${list[5].name}</span> <
-                  /div> <
-                  /div>
                   <div>
-                                        <img src="${"https://image.tmdb.org/t/p/w500"+list[6].profile_path}" class="actor_pic">
-                                        <span>${list[6].name}</span>
-                                    </div> <
-                  div >
+                      <img src="${"https://image.tmdb.org/t/p/w500"+list[4].profile_path}" class="actor_pic">
+                      <span>${list[4].name}</span>
+                  </div>
+                  <div>
+                      <img src="${"https://image.tmdb.org/t/p/w185"+list[5].profile_path}" class="actor_pic">
+                      <span>${list[5].name}</span>
+                  </div>
+              </div>
+              <div>
+                  <div>
+                      <img src="${"https://image.tmdb.org/t/p/w500"+list[6].profile_path}" class="actor_pic">
+                      <span>${list[6].name}</span>
+                  </div>
+                  <div>
                       <img src="${"https://image.tmdb.org/t/p/w185"+list[7].profile_path}" class="actor_pic">
-                                        <span>${list[7].name}</span> <
-                      /div> <
-                      /div>
-
+                      <span>${list[7].name}</span>
+                  </div>
               </div>`
     display.innerHTML = text
 }
