@@ -10,6 +10,7 @@
   <meta name="msapplication-navbutton-color" content="#ff0000">
   <!-- iOS Safari -->
   <meta name="apple-mobile-web-app-status-bar-style" content="#ff0000">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Oxanium&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       rel="stylesheet">
@@ -36,7 +37,7 @@
               <div class="slide_info">
                   <span class="title">Loading Trends</span>
                   <span class="genre">. . .</span>
-                  <span class="trend_number">Trending #1</span><button class="trend_div"></button>
+                  <span class="trend_number">Trending #1</span><button class="trend_div"><a href="movie.html">×</a></button>
                   <span class="brief_synopsis">NRG Movieroom is powered by tmdb API...</span>
               </div>
           </div>
@@ -55,7 +56,6 @@
           <h2>New Movies</h2>
           <div class="slides sm-slide new_movies">
               <div><img src="loader.jpg" class="movie_pic"></div>
-              
           </div>
       </div>
       
@@ -71,16 +71,35 @@
               
           </div>
       </div>
+      <div class="film_list">
+          <h2>Top Series</h2>
+          <div class="slides sm-slide top_series">
+              <div><img src="loader.jpg" class="movie_pic"></div>
+          </div>
+      </div>
       </div> <!--end of main sections-->
       <div class="film_list search_results_container">
-          <h2>Results For </h2>
-          <div class="slides sm-slide search_results">
+          <h2>Results For <span id="query_display"></span></h2>
+          <h3><a onclick="closeSearch()"><span class="material-icons-outlined">arrow_back</span>Close Search</a></h3>
+          <div class="slides sm-slide search_results"></div>
               
       </div>
   </section><!--end of home screen-->
   <footer>
-      <h5>NRG Movieroom</h5>
-      
+      <div class="footerLogo_container">
+          <h2>NRG <span>Movieroom</span></h2>
+          <p>Contact</p>
+          <p>Company</p>
+          <div class="socialLinks">
+              <a href="/"><i class="bi bi-facebook"></i></a>
+              <a href="/"><i class="bi bi-twitter"></i></a>
+              <a href="/"><i class="bi bi-github"></i></a>
+          </div>
+      </div>
+      <div class="credits">
+          <p>Built with ❤️ from <a href="https://www.nrg.netlify.app">NRG</a></p>
+          <p><a href="https://developers.themoviedb.org/3/">⚡ by tmdb API</a</p>
+      </div>
   </footer>
   <!-- Project -->
   <script src="app.js"></script>
