@@ -2,7 +2,7 @@
 
 **An online movie information app**
 
-### Live link: [nrg-builds.github.io/movie-app] (https://nrg-builds.github.io/movie-app)
+### Live link: [nrg-builds.github.io/movie-app](https://nrg-builds.github.io/movie-app)
 
 ![Different Pages Of Movie App](/movie-app.jpg)
 
